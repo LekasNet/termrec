@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "termrec"
+version = "0.4.0"
+description = "Record interactive terminal sessions and export them as clean TXT or Markdown reports."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+  { name = "lekasnet" }
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/lekasnet/termrec"
+Source = "https://github.com/lekasnet/termrec"
+Issues = "https://github.com/lekasnet/termrec/issues"
+
+[project.scripts]
+termrec = "termrec.cli:main"
+rec = "termrec.cli:rec_main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["termrec*"]
+
+[tool.setuptools.package-data]
+termrec = ["termrec.bash", "termrec.zsh"]

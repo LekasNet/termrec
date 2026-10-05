@@ -1,0 +1,21 @@
+# Local source package. Run packaging/arch/build.sh from the repository root.
+pkgname=termrec
+pkgver=0.4.0
+pkgrel=1
+pkgdesc='Record interactive terminal sessions and export Markdown/TXT reports'
+arch=('any')
+license=('MIT')
+url='https://github.com/lekasnet/termrec'
+depends=('python>=3.10' 'bash')
+optdepends=('zsh: record a zsh interactive session')
+source=("termrec-${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+package() {
+  cd "${srcdir}/termrec-${pkgver}"
+  install -d "${pkgdir}/usr/lib/termrec/termrec" "${pkgdir}/usr/bin" "${pkgdir}/usr/share/doc/termrec" "${pkgdir}/usr/share/licenses/termrec"
+  install -m644 termrec/*.py termrec/termrec.bash termrec/termrec.zsh "${pkgdir}/usr/lib/termrec/termrec/"
+  install -m755 packaging/bin/rec packaging/bin/termrec "${pkgdir}/usr/bin/"
+  install -m644 README.md "${pkgdir}/usr/share/doc/termrec/README.md"
+  install -m644 LICENSE "${pkgdir}/usr/share/licenses/termrec/LICENSE"
+}
